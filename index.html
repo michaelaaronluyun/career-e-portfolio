@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Michael Aaron Luyun — Career e-Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Reset & Variables ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f4f1eb;
+      --surface: #ffffff;
+      --surface2: #edeae2;
+      --ink: #0d0d0d;
+      --ink-muted: #5a5650;
+      --ink-faint: #a09c94;
+      --accent: #1a3cff;
+      --accent2: #ff3c1a;
+      --accent3: #00c896;
+      --border: #d5d0c7;
+      --mono: 'Space Mono', monospace;
+      --display: 'Syne', sans-serif;
+      --body: 'DM Sans', sans-serif;
+      --radius: 2px;
+      --gap: clamp(1.5rem, 4vw, 3rem);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── Grid Noise Texture ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(26,60,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(26,60,255,.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ─── Navigation ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(244, 241, 235, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 var(--gap);
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--ink-muted);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    .nav-tag {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 3px 10px;
+      letter-spacing: 0.08em;
+    }
+
+    /* ─── Hero ─── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: calc(60px + var(--gap)) var(--gap) var(--gap);
+      gap: var(--gap);
+      overflow: hidden;
+    }
+
+    .hero-grid-label {
+      position: absolute;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.1em;
+    }
+    .hero-grid-label.tl { top: 80px; left: var(--gap); }
+    .hero-grid-label.tr { top: 80px; right: var(--gap); }
+    .hero-grid-label.bl { bottom: var(--gap); left: var(--gap); }
+    .hero-grid-label.br { bottom: var(--gap); right: var(--gap); }
+
+    .hero-content { position: relative; z-index: 1; }
+
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .hero-eyebrow::after {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-name {
+      font-family: var(--display);
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.3em;
+    }
+    .hero-name .first { display: block; }
+    .hero-name .last {
+      display: block;
+      color: transparent;
+      -webkit-text-stroke: 2px var(--ink);
+    }
+
+    .hero-role {
+      font-family: var(--display);
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      font-weight: 500;
+      color: var(--ink-muted);
+      margin-bottom: 2rem;
+    }
+
+    .hero-bio {
+      font-size: 1rem;
+      color: var(--ink-muted);
+      max-width: 420px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 12px 28px;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all .2s;
+      position: relative;
+    }
+    .btn-primary {
+      background: var(--ink);
+      color: var(--bg);
+    }
+    .btn-primary:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--ink);
+      border: 1.5px solid var(--ink);
+    }
+    .btn-outline:hover {
+      background: var(--ink);
+      color: var(--bg);
+      transform: translateY(-2px);
+    }
+
+    /* ─── Hero Photo ─── */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-photo-frame {
+      position: relative;
+      width: min(380px, 90%);
+      aspect-ratio: 3/4;
+    }
+
+    .hero-photo-frame::before {
+      content: '';
+      position: absolute;
+      inset: -12px;
+      border: 1.5px solid var(--accent);
+      transform: rotate(2deg);
+      z-index: 0;
+    }
+    .hero-photo-frame::after {
+      content: '';
+      position: absolute;
+      inset: -24px;
+      border: 1px dashed var(--border);
+      transform: rotate(-1deg);
+      z-index: 0;
+    }
+
+    .hero-photo-placeholder {
+      width: 100%;
+      height: 100%;
+      background: var(--surface2);
+      border: 1.5px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .hero-photo-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 20px,
+        rgba(0,0,0,.03) 20px,
+        rgba(0,0,0,.03) 21px
+      );
+    }
+    .hero-photo-placeholder svg {
+      width: 64px;
+      height: 64px;
+      color: var(--ink-faint);
+      position: relative;
+    }
+    .hero-photo-placeholder p {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    .hero-stats {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      background: var(--accent);
+      color: white;
+      padding: 20px;
+      z-index: 2;
+    }
+    .hero-stats .num {
+      font-family: var(--display);
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+    .hero-stats .label {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    /* ─── Sections ─── */
+    section {
+      padding: calc(var(--gap) * 2.5) var(--gap);
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .section-number {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+    }
+
+    .section-title {
+      font-family: var(--display);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ─── About / Intro ─── */
+    #about { background: var(--surface); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--gap);
+      align-items: start;
+    }
+
+    .about-text p {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--ink-muted);
+      margin-bottom: 1.2em;
+    }
+    .about-text p:first-child {
+      font-size: 1.2rem;
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .about-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .info-card {
+      border: 1.5px solid var(--border);
+      padding: 1.5rem;
+      background: var(--bg);
+    }
+
+    .info-card-label {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .info-list { display: flex; flex-direction: column; gap: 0.6rem; }
+
+    .info-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 0.9rem;
+    }
+    .info-item-key {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--ink-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .info-item-val { color: var(--ink); font-weight: 500; }
+    .info-item-val a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px dotted var(--accent);
+    }
+    .info-item-val a:hover { border-bottom-style: solid; }
+
+    .skills-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+    .chip {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.05em;
+      padding: 4px 12px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--ink-muted);
+      transition: all .15s;
+    }
+    .chip:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ─── LinkedIn ─── */
+    #linkedin { background: var(--bg); }
+
+    .linkedin-card {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding: 2.5rem 3rem;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      max-width: 680px;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .linkedin-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: #0a66c2;
+    }
+    .linkedin-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,.1);
+    }
+
+    .linkedin-icon {
+      width: 56px;
+      height: 56px;
+      background: #0a66c2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: white;
+    }
+    .linkedin-icon svg { width: 28px; height: 28px; }
+
+    .linkedin-info h3 {
+      font-family: var(--display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+    .linkedin-info p {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--ink-muted);
+      letter-spacing: 0.05em;
+    }
+    .linkedin-info .url {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: #0a66c2;
+      margin-top: 0.5rem;
+      display: block;
+    }
+
+    .linkedin-arrow {
+      margin-left: auto;
+      font-size: 1.5rem;
+      color: var(--ink-faint);
+    }
+
+    /* ─── Resume ─── */
+    #resume { background: var(--surface); }
+
+    .resume-layout {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: var(--gap);
+      align-items: start;
+    }
+
+    .resume-preview {
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .resume-preview::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 24px,
+        var(--border) 24px,
+        var(--border) 25px
+      );
+      opacity: 0.3;
+    }
+    .resume-placeholder-icon {
+      width: 48px;
+      height: 48px;
+      color: var(--ink-faint);
+      position: relative;
+    }
+    .resume-preview p {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    .resume-sidebar h3 {
+      font-family: var(--display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .resume-sidebar p {
+      color: var(--ink-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .resume-highlights {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+    .resume-hl {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.9rem;
+    }
+    .resume-hl-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* ─── Academic Work ─── */
+    #academic { background: var(--bg); }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,.08);
+    }
+
+    .project-img-placeholder {
+      aspect-ratio: 16/9;
+      background: var(--surface2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .project-img-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 10px,
+        rgba(0,0,0,.04) 10px,
+        rgba(0,0,0,.04) 11px
+      );
+    }
+    .project-img-placeholder svg {
+      width: 32px;
+      height: 32px;
+      color: var(--ink-faint);
+      position: relative;
+    }
+    .project-img-placeholder span {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    .project-img-accent { background: var(--accent); }
+    .project-img-accent2 { background: #1a2a4a; }
+    .project-img-accent3 { background: #1a3a2a; }
+
+    .project-img-placeholder.project-img-accent svg,
+    .project-img-placeholder.project-img-accent span,
+    .project-img-placeholder.project-img-accent2 svg,
+    .project-img-placeholder.project-img-accent2 span,
+    .project-img-placeholder.project-img-accent3 svg,
+    .project-img-placeholder.project-img-accent3 span {
+      color: rgba(255,255,255,0.5);
+    }
+
+    .project-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+
+    .project-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.8rem; }
+    .project-tag {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--ink-muted);
+    }
+
+    .project-title {
+      font-family: var(--display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-desc {
+      font-size: 0.9rem;
+      color: var(--ink-muted);
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: 1.2rem;
+    }
+
+    .project-links { display: flex; gap: 1rem; }
+    .project-link {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--accent);
+      border-bottom: 1px solid var(--accent);
+      transition: opacity .15s;
+    }
+    .project-link:hover { opacity: 0.7; }
+    .project-link.muted { color: var(--ink-muted); border-color: var(--ink-muted); }
+
+    /* ─── Collage / Media ─── */
+    .collage-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 200px;
+      gap: 0.75rem;
+      margin-top: 2rem;
+    }
+
+    .collage-item {
+      background: var(--surface2);
+      border: 1.5px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: opacity .2s;
+    }
+    .collage-item:hover { opacity: 0.85; }
+
+    .collage-item.span2 { grid-column: span 2; }
+    .collage-item.tall { grid-row: span 2; }
+
+    .collage-item::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg, transparent, transparent 8px,
+        rgba(0,0,0,.04) 8px, rgba(0,0,0,.04) 9px
+      );
+    }
+
+    .collage-item svg {
+      width: 28px; height: 28px;
+      color: var(--ink-faint);
+      position: relative;
+    }
+    .collage-item span {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    /* ─── Work Samples ─── */
+    #work { background: var(--surface); }
+
+    .work-items { display: flex; flex-direction: column; gap: 2rem; }
+
+    .work-item {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 2rem;
+      border: 1.5px solid var(--border);
+      overflow: hidden;
+      transition: box-shadow .2s;
+    }
+    .work-item:hover { box-shadow: 0 8px 24px rgba(0,0,0,.07); }
+
+    .work-item-img {
+      background: var(--surface2);
+      aspect-ratio: auto;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .work-item-img::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg, transparent, transparent 10px,
+        rgba(0,0,0,.04) 10px, rgba(0,0,0,.04) 11px
+      );
+    }
+    .work-item-img svg {
+      width: 32px; height: 32px;
+      color: var(--ink-faint);
+      position: relative;
+    }
+    .work-item-img span {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    .work-item-body { padding: 1.5rem 1.5rem 1.5rem 0; }
+
+    .work-item-type {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .work-item-title {
+      font-family: var(--display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .work-item-desc {
+      font-size: 0.92rem;
+      color: var(--ink-muted);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .work-item-meta {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .work-meta-piece {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    .work-meta-label {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+    .work-meta-val {
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    /* ─── References ─── */
+    #references { background: var(--bg); }
+
+    .refs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .ref-card {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      position: relative;
+      transition: box-shadow .2s;
+    }
+    .ref-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,.07); }
+
+    .ref-card::before {
+      content: '"';
+      position: absolute;
+      top: 1.2rem;
+      right: 1.5rem;
+      font-family: var(--display);
+      font-size: 4rem;
+      color: var(--border);
+      line-height: 1;
+    }
+
+    .ref-photo-placeholder {
+      width: 56px;
+      height: 56px;
+      background: var(--surface2);
+      border: 1.5px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ref-photo-placeholder svg { width: 24px; height: 24px; color: var(--ink-faint); }
+
+    .ref-name {
+      font-family: var(--display);
+      font-size: 1rem;
+      font-weight: 700;
+    }
+    .ref-role {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.05em;
+      color: var(--ink-muted);
+    }
+    .ref-org {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--accent);
+    }
+
+    .ref-quote {
+      font-size: 0.9rem;
+      color: var(--ink-muted);
+      line-height: 1.7;
+      font-style: italic;
+      flex: 1;
+    }
+
+    .ref-contact {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── Letters ─── */
+    #letters { background: var(--surface); }
+
+    .letters-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .letter-card {
+      border: 1.5px solid var(--border);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow .2s;
+    }
+    .letter-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,.07); }
+
+    .letter-preview {
+      aspect-ratio: 8.5/11;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+    .letter-preview::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent, transparent 14px,
+        var(--border) 14px, var(--border) 15px
+      );
+      opacity: 0.2;
+    }
+    .letter-preview svg {
+      width: 36px; height: 36px;
+      color: var(--ink-faint);
+      position: relative;
+    }
+    .letter-preview span {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    .letter-footer { padding: 1.2rem 1.5rem; background: var(--surface); }
+    .letter-from {
+      font-family: var(--display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+    .letter-desc {
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+    }
+
+    .placeholder-note {
+      background: var(--bg);
+      border: 1.5px dashed var(--border);
+      padding: 3rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    .placeholder-note svg { width: 40px; height: 40px; color: var(--ink-faint); }
+    .placeholder-note p {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      max-width: 380px;
+      line-height: 1.8;
+    }
+
+    /* ─── Footer ─── */
+    footer {
+      background: var(--ink);
+      color: var(--bg);
+      padding: var(--gap) calc(var(--gap) * 1.5);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--gap);
+      align-items: end;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-left h2 {
+      font-family: var(--display);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .footer-left p {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.5);
+      max-width: 380px;
+      line-height: 1.7;
+    }
+
+    .footer-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 1.5rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .footer-links a {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color .15s;
+    }
+    .footer-links a:hover { color: white; }
+
+    .footer-copy {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── Dividers / accents ─── */
+    .ruled {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: var(--gap) 0;
+    }
+
+    /* ─── Animations ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-content > * {
+      animation: fadeUp .6s ease both;
+    }
+    .hero-content > *:nth-child(1) { animation-delay: .1s; }
+    .hero-content > *:nth-child(2) { animation-delay: .2s; }
+    .hero-content > *:nth-child(3) { animation-delay: .3s; }
+    .hero-content > *:nth-child(4) { animation-delay: .4s; }
+    .hero-content > *:nth-child(5) { animation-delay: .5s; }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-visual { order: -1; }
+      .hero-photo-frame { width: min(280px, 80%); }
+      .about-grid { grid-template-columns: 1fr; }
+      .resume-layout { grid-template-columns: 1fr; }
+      .work-item { grid-template-columns: 1fr; }
+      .work-item-img { min-height: 180px; }
+      .work-item-body { padding: 1.5rem; }
+      footer { grid-template-columns: 1fr; }
+      .footer-right { align-items: flex-start; }
+      .footer-links { justify-content: flex-start; }
+      .collage-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .collage-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 140px; }
+      .collage-item.span2 { grid-column: span 2; }
+      .collage-item.tall { grid-row: span 1; }
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── Navigation ─── -->
+<nav>
+  <a href="#" class="nav-logo">career<span>.</span>e-portfolio</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#linkedin">LinkedIn</a></li>
+    <li><a href="#resume">Resume</a></li>
+    <li><a href="#academic">Academic</a></li>
+    <li><a href="#work">Experience</a></li>
+    <li><a href="#references">References</a></li>
+  </ul>
+  <span class="nav-tag">BS Information Technology</span>
+</nav>
+
+<!-- ─── Hero ─── -->
+<section class="hero" id="top">
+  <span class="hero-grid-label tl">PORTFOLIO // 2026</span>
+  <span class="hero-grid-label tr">DLSU — BS-IT</span>
+  <span class="hero-grid-label bl">MANILA, PH</span>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Career e-Portfolio</div>
+    <h1 class="hero-name">
+      <span class="first">Michael Aaron</span>
+      <span class="last">Luyun</span>
+    </h1>
+    <p class="hero-role">BS Information Technology · De La Salle University</p>
+    <p class="hero-bio">
+      Passionate about everything tech, from both hardware and software. 
+      Currently pursuing a degree in Information Technology at DLSU with a focus on systems, 
+      software development, and computer vision. Always building. Always learning.
+    </p>
+    <div class="hero-ctas">
+      <a href="https://drive.google.com/file/d/1oeTnLP7NAVEs8379Q3AFP8fig4u2KlnO/view?usp=sharing" target="_blank" class="btn btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Resume
+      </a>
+      <a href="mailto:michaelaaronluyun@gmail.com" class="btn btn-outline">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,4 12,13 2,4"/></svg>
+        Get in Touch
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-photo-frame">
+      <div class="hero-photo-placeholder">
+        <img src="images/photo.jpg" alt="Michael Aaron Luyun" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Self Introduction ─── -->
+<section id="about">
+  <div class="section-header">
+    <span class="section-number">01 /</span>
+    <h2 class="section-title">Self Introduction</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-text">
+      <p>Hi, I'm Michael Aaron Luyun! an IT student at De La Salle University (Batch 2027) with a genuine curiosity for how technology works, from the hardware level all the way up to the software that runs on it.</p>
+      <p>My academic journey has equipped me with a strong foundation in operating systems, computer networking, and software development. I enjoy tackling problems that sit at the intersection of engineering precision and creative problem-solving — whether that's training a computer vision model, architecting a network, or shipping a mobile application.</p>
+      <p>Outside of academics, I'm driven by the belief that technology should be both functional and thoughtfully designed. I'm actively looking for opportunities where I can contribute meaningfully, keep growing, and eventually build things that matter at scale.</p>
+      <p>When I'm not coding, you might find me exploring the latest in tech, tinkering with hardware setups, or secretly admiring sloths.</p>
+    </div>
+
+    <div class="about-sidebar">
+      <div class="info-card">
+        <div class="info-card-label">Quick Info</div>
+        <div class="info-list">
+          <div class="info-item">
+            <span class="info-item-key">Name</span>
+            <span class="info-item-val">Michael Aaron Luyun</span>
+          </div>
+          <div class="info-item">
+            <span class="info-item-key">Degree</span>
+            <span class="info-item-val">BS Information Technology</span>
+          </div>
+          <div class="info-item">
+            <span class="info-item-key">School</span>
+            <span class="info-item-val">De La Salle University</span>
+          </div>
+          <div class="info-item">
+            <span class="info-item-key">Year</span>
+            <span class="info-item-val">2023 – Nov. 2027</span>
+          </div>
+          <div class="info-item">
+            <span class="info-item-key">Email</span>
+            <span class="info-item-val"><a href="mailto:michaelaaronluyun@gmail.com">michaelaaronluyun@gmail.com</a></span>
+          </div>
+          <div class="info-item">
+            <span class="info-item-key">GitHub</span>
+            <span class="info-item-val"><a href="https://github.com/michaelaaronluyun" target="_blank">michaelaaronluyun</a></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-card-label">Technical Skills</div>
+        <div class="skills-chips">
+          <span class="chip">Python</span>
+          <span class="chip">Kotlin</span>
+          <span class="chip">Java</span>
+          <span class="chip">OpenCV</span>
+          <span class="chip">TensorFlow</span>
+          <span class="chip">Android Studio</span>
+          <span class="chip">Firebase</span>
+          <span class="chip">Cisco Packet Tracer</span>
+          <span class="chip">VLANs / ACLs</span>
+          <span class="chip">Linux</span>
+          <span class="chip">Git</span>
+          <span class="chip">Networking</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── LinkedIn ─── -->
+<section id="linkedin">
+  <div class="section-header">
+    <span class="section-number">02 /</span>
+    <h2 class="section-title">Public Profile</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <a class="linkedin-card" href="https://www.linkedin.com/in/michael-aaron-luyun-b60bb0382" target="_blank">
+    <div class="linkedin-icon">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/>
+        <rect x="2" y="9" width="4" height="12"/>
+        <circle cx="4" cy="4" r="2"/>
+      </svg>
+    </div>
+    <div class="linkedin-info">
+      <h3>Michael Aaron Luyun</h3>
+      <p>BS Information Technology · De La Salle University · Class of 2027</p>
+      <span class="url">linkedin.com/in/michael-aaron-luyun-b60bb0382</span>
+    </div>
+    <div class="linkedin-arrow">→</div>
+  </a>
+</section>
+
+<!-- ─── Resume ─── -->
+<section id="resume">
+  <div class="section-header">
+    <span class="section-number">03 /</span>
+    <h2 class="section-title">Resume</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="resume-layout">
+    <div class="resume-preview">
+      <img src="images/resume.jpg" style="width:50%;height:50%;object-fit:cover">
+      <p>resume preview</p>
+    </div>
+
+    <div class="resume-sidebar">
+      <h3>Curriculum Vitae</h3>
+      <p>A comprehensive overview of my academic background, technical skills, and project experience — tailored for opportunities in software development, systems engineering, and IT roles.</p>
+
+      <div class="resume-highlights">
+        <div class="resume-hl"><span class="resume-hl-dot"></span>BS Information Technology, DLSU (2023–2027)</div>
+        <div class="resume-hl"><span class="resume-hl-dot"></span>Computer Vision &amp; Machine Learning Projects</div>
+        <div class="resume-hl"><span class="resume-hl-dot"></span>Enterprise Network Design (Cisco)</div>
+        <div class="resume-hl"><span class="resume-hl-dot"></span>Android Mobile App Development</div>
+        <div class="resume-hl"><span class="resume-hl-dot"></span>Strong OS &amp; Software Dev Foundation</div>
+      </div>
+
+      <a href="https://drive.google.com/file/d/1oeTnLP7NAVEs8379Q3AFP8fig4u2KlnO/view?usp=sharing" target="_blank" class="btn btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Resume (PDF)
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Academic Work Samples ─── -->
+<section id="academic">
+  <div class="section-header">
+    <span class="section-number">04 /</span>
+    <h2 class="section-title">Academic (& Personal) Work</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="projects-grid">
+
+    <!-- Project 1: Judo Analyzer -->
+    <div class="project-card">
+      <div class="project-img-placeholder project-img-accent">
+        <img src="images/judo-analyzer.png" style="width:100%;height:100%;object-fit:cover">
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="project-tag">Computer Vision</span>
+          <span class="project-tag">ML</span>
+          <span class="project-tag">Current</span>
+        </div>
+        <h3 class="project-title">Judo Analyzer</h3>
+        <p class="project-desc">An ongoing Computer Vision and Machine Learning project that analyzes judo match footage to extract performance insights and technical breakdowns. Built with Python, OpenCV, and TensorFlow.</p>
+        <div class="project-links">
+          <a href="https://judo-analyzer-sand.vercel.app/" target="_blank" class="project-link">Live Demo →</a>
+          <a href="https://github.com/michaelaaronluyun/judo-analyzer" target="_blank" class="project-link">Source Code →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project: Budgeat -->
+    <div class="project-card">
+      <div class="project-img-placeholder project-img-accent">
+        <img src="images/budgeat.png" style="width:100%;height:100%;object-fit:cover">
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="project-tag">Android</span>
+          <span class="project-tag">Kotlin</span>
+          <span class="project-tag">Current</span>
+        </div>
+        <h3 class="project-title">Budgeat</h3>
+        <p class="project-desc">An Android application that combines both budget tracking and food spots discovery around the Taft area.</p>
+        <div class="project-links">
+            <a href="#" class="project-link muted">TBA</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 2: Network Design -->
+    <div class="project-card">
+      <div class="project-img-placeholder project-img-accent2">
+        <img src="images/network-design.png" style="width:100%;height:100%;object-fit:cover">
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="project-tag">Networking</span>
+          <span class="project-tag">Cisco</span>
+          <span class="project-tag">Security</span>
+        </div>
+        <h3 class="project-title">Enterprise Network Design &amp; Simulation</h3>
+        <p class="project-desc">Designed and simulated a full enterprise network topology in Cisco Packet Tracer, implementing VLANs for network segmentation and ACLs for perimeter security and access control.</p>
+        <div class="project-links">
+          <a href="#" class="project-link muted">See Resume for Details</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 3: Gainly -->
+    <div class="project-card">
+      <div class="project-img-placeholder project-img-accent3">
+        <img src="images/gainly.png" style="width:100%;height:100%;object-fit:cover">
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="project-tag">Android</span>
+          <span class="project-tag">Kotlin</span>
+          <span class="project-tag">Firebase</span>
+        </div>
+        <h3 class="project-title">Gainly</h3>
+        <p class="project-desc">An Android workout tracking application built with Kotlin and Java. Features real-time data sync via Firebase and social integration via the Facebook API. Designed to help users log and track training progress.</p>
+        <div class="project-links">
+          <a href="#" class="project-link muted">See Resume for Details</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 4: Course Schedule Planner -->
+    <div class="project-card">
+      <div class="project-img-placeholder project-img-accent3">
+        <img src="images/csp.png" style="width:100%;height:100%;object-fit:cover">
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="project-tag">HTML</span>
+          <span class="project-tag">CSS</span>
+          <span class="project-tag">JavaScript</span>
+        </div>
+        <h3 class="project-title">Course Schedule Planner</h3>
+        <p class="project-desc">A web application for students to plan and manage their course schedules. Built with HTML, CSS, and JavaScript.</p>
+        <div class="project-links">
+          <a href="#" class="project-link muted">See Github for Details</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Collage / Media Grid -->
+  <div style="margin-top: 3rem;">
+    <div class="info-card-label" style="margin-bottom: 1.5rem; font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-faint);">Work Samples &amp; Documentation</div>
+    <div class="collage-grid">
+      <div class="collage-item span2 tall">
+        <img src="images/sample1.jpg" style="width:100%;height:100%;object-fit:cover">
+      </div>
+      <div class="collage-item">
+        <img src="images/sample2.png" style="width:100%;height:100%;object-fit:cover">
+      </div>
+      <div class="collage-item">
+        <img src="images/sample3.png" style="width:100%;height:100%;object-fit:cover">
+      </div>
+      <div class="collage-item span2">
+        <img src="images/sample4.png" style="width:100%;height:100%;object-fit:cover">
+      </div>
+  </div>
+</section>
+
+<!-- ─── Work / Volunteer / Business Samples ─── -->
+<section id="work">
+  <div class="section-header">
+    <span class="section-number">05 /</span>
+    <h2 class="section-title">Work &amp; Experience</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="work-items">
+
+    <!-- Work Item 1 -->
+    <div class="work-item">
+      <div class="work-item-img">
+        <img src="images/work1.png" style="width:100%;height:100%;object-fit:cover">
+      </div>
+      <div class="work-item-body">
+        <div class="work-item-type">Leadership & Extra-Curricular</div>
+        <h3 class="work-item-title">Finance Chairperson</h3>
+        <p class="work-item-desc">Managed and documented the batch’s annual budget, ensuring financial transparency. Collaborated with project heads to align spending with strategic goals for student events.</p>
+        <div class="work-item-meta">
+          <div class="work-meta-piece">
+            <span class="work-meta-label">Organization</span>
+            <span class="work-meta-val">Computer Batch 2027 (CATCH2T27)</span>
+          </div>
+          <div class="work-meta-piece">
+            <span class="work-meta-label">Duration</span>
+            <span class="work-meta-val">AY 23-24, AY 24-25</span>
+          </div>
+          <div class="work-meta-piece">
+            <span class="work-meta-label">Type</span>
+            <span class="work-meta-val">Volunteer</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Work Item 2 -->
+    <div class="work-item">
+      <div class="work-item-img">
+        <img src="images/work2.png" style="width:100%;height:100%;object-fit:cover">
+      </div>
+      <div class="work-item-body">
+        <div class="work-item-type">Leadership & Extra-Curricular</div>
+        <h3 class="work-item-title">Operations Chairperson</h3>
+        <p class="work-item-desc">Coordinated logistics and planning for major batch events.</p>
+        <div class="work-item-meta">
+          <div class="work-meta-piece">
+            <span class="work-meta-label">Organization</span>
+            <span class="work-meta-val">Computer Batch 2027 (CATCH2T27)</span>
+          </div>
+          <div class="work-meta-piece">
+            <span class="work-meta-label">Duration</span>
+            <span class="work-meta-val">AY 24-25</span>
+          </div>
+          <div class="work-meta-piece">
+            <span class="work-meta-label">Type</span>
+            <span class="work-meta-val">Volunteer</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── References ─── -->
+<section id="references">
+  <div class="section-header">
+    <span class="section-number">06 /</span>
+    <h2 class="section-title">References</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="refs-grid">
+
+    <div class="ref-card">
+      <div class="ref-photo-placeholder">
+        <img src="images/ref1.jpg" style="width:100%;height:100%;border-radius:50%;object-fit:cover">
+      </div>
+      <div>
+        <div class="ref-name">Reuchlin Charles Faustino</div>
+        <div class="ref-role">Former Batch President</div>
+        <div class="ref-org">CATCH2T27</div>
+      </div>
+      <p class="ref-quote">Michael is the tallest colleague I have, yet he's also the most down to earth person I've ever met. You can always count on him to have sheer grit and joy in all of his life's endeavors.</p>
+      <div class="ref-contact">reuchlin_faustino@dlsu.edu.ph</div>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-photo-placeholder">
+        <img src="images/ref2.jpg" style="width:100%;height:100%;border-radius:50%;object-fit:cover">
+      </div>
+      <div>
+        <div class="ref-name">Michael Maglente</div>
+        <div class="ref-role">Former Batch Vice President</div>
+        <div class="ref-org">CATCH2T27</div>
+      </div>
+      <p class="ref-quote">You can count on Michael to finish a task that was given to him. He ensures that the task is complete and checks for any errors before submitting his work.</p>
+      <div class="ref-contact">michael_maglente@dlsu.edu.ph</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── Footer ─── -->
+<footer>
+  <div class="footer-left">
+    <h2>Let's Connect.</h2>
+    <p>Open to internships, part-time roles, and collaborative projects in IT, software development, and systems engineering.</p>
+  </div>
+
+  <div class="footer-right">
+    <div class="footer-links">
+      <a href="mailto:michaelaaronluyun@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/michael-aaron-luyun-b60bb0382" target="_blank">LinkedIn</a>
+      <a href="https://github.com/michaelaaronluyun" target="_blank">GitHub</a>
+      <a href="https://www.facebook.com/zuapity" target="_blank">Facebook</a>
+      <a href="https://www.instagram.com/aaron.luyun/" target="_blank">Instagram</a>
+      <a href="https://drive.google.com/file/d/1oeTnLP7NAVEs8379Q3AFP8fig4u2KlnO/view?usp=sharing" target="_blank">Resume</a>
+    </div>
+    <div class="footer-copy">© 2025 Michael Aaron Luyun · BS Information Technology · DLSU</div>
+  </div>
+</footer>
+
+</body>
+</html>
